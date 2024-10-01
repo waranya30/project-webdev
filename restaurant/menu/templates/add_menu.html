@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่มเมนู</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{% static 'css/add_menu.css' %}" rel="stylesheet"> <!-- เชื่อมโยง CSS -->
+</head>
+<body class="bg-gray-100 p-6 min-h-screen flex flex-col">
+    <div class="form-background">
+        <!-- คำว่าแอดมินที่มุมซ้าย -->
+        <div class="mb-4">
+            <h2 class="text-3xl font-bold text-black text-left">แอดมิน</h2> <!-- ย้ายไปที่มุมซ้าย -->
+        </div>
+
+        <h1 class="text-4xl font-bold mb-8 text-center text-blue-700">เพิ่มเมนู</h1>
+
+        <form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-xl shadow-xl max-w-sm mx-auto">
+            {% csrf_token %}
+            
+            <!-- ชื่อเมนู -->
+            <div class="mb-4">
+                <label for="menu_name" class="block mb-2 text-sm font-semibold text-blue-700">ชื่อเมนู:</label>
+                <input type="text" id="menu_name" name="menu_name" class="border border-blue-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" required>
+            </div>
+
+            <!-- คำอธิบาย -->
+            <div class="mb-4">
+                <label for="description" class="block mb-2 text-sm font-semibold text-blue-700">คำอธิบาย:</label>
+                <textarea id="description" name="description" class="border border-blue-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" required></textarea>
+            </div>
+
+            <!-- ราคา -->
+            <div class="mb-4">
+                <label for="price" class="block mb-2 text-sm font-semibold text-blue-700">ราคา:</label>
+                <input type="number" id="price" name="price" step="0.01" class="border border-blue-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" required>
+            </div>
+
+            <!-- RadioButton: สำหรับเลือกประเภทอาหาร -->
+            <div class="mb-4">
+                <span class="block mb-2 text-sm font-semibold text-blue-700">ประเภทอาหาร:</span>
+                <div class="flex items-center space-x-4">
+                    <label>
+                        <input type="radio" name="category" value="อาหารคาว" class="mr-2" required> อาหารคาว
+                    </label>
+                    <label>
+                        <input type="radio" name="category" value="ของหวาน" class="mr-2"> ของหวาน
+                    </label>
+                    <label>
+                        <input type="radio" name="category" value="เครื่องดื่ม" class="mr-2"> เครื่องดื่ม
+                    </label>
+                </div>
+            </div>
+
+            <!-- อัปโหลดรูปภาพ -->
+            <div class="mb-4">
+                <label for="image" class="block mb-2 text-sm font-semibold text-blue-700">อัปโหลดรูปภาพ:</label>
+                <input type="file" id="image" name="image" class="border border-blue-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
+                <small class="text-gray-500">* กรุณาอัปโหลดรูปภาพของเมนู</small>
+            </div>
+
+            <!-- ปุ่มเพิ่มเมนูและปุ่มกลับไปหน้าโฮมในบรรทัดเดียวกัน -->
+            <div class="flex justify-between items-center mt-4">
+                <a href="{% url 'home' %}" class="bg-gray-400 text-white rounded-full py-2 px-4 hover:bg-gray-500 transition shadow-lg">
+                    กลับไปหน้าโฮม
+                </a>
+                
+                <button type="submit" class="bg-blue-500 text-white rounded-full py-2 px-6 hover:bg-blue-600 transition font-semibold shadow-lg">
+                    เพิ่มเมนู
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

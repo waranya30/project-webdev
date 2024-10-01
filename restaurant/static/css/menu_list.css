@@ -1,0 +1,128 @@
+/* ตกแต่งตาราง */
+table {
+    border-collapse: collapse; /* ทำให้เส้นของตารางไม่แยกกัน */
+    width: 100%; /* กำหนดความกว้างของตาราง */
+}
+
+/* ตกแต่งส่วนหัวของตาราง */
+.table-header {
+    background-color: #e0f7fa; /* สีพื้นหลังของหัวตาราง */
+    color: #006064; /* สีตัวอักษรในหัวตาราง */
+}
+
+/* ตกแต่งเซลล์ของตาราง */
+th, td {
+    padding: 12px; /* ระยะห่างภายในเซลล์ */
+    border: 1px solid #b2ebf2; /* เส้นขอบเซลล์ */
+    text-align: left; /* จัดข้อความไปทางซ้าย */
+    font-family: 'Arial', sans-serif; /* แบบตัวอักษร */
+}
+
+/* ปรับขนาดของรูปภาพ */
+td img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* ทำให้รูปภาพถูกครอบให้พอดี */
+    border-radius: 5px; /* เพิ่มมุมโค้ง */
+}
+
+/* เปลี่ยนสีเมื่อชี้เมาส์ */
+tr:hover {
+    background-color: #b2ebf2; /* เปลี่ยนสีพื้นหลังเมื่อชี้ */
+}
+
+/* ปรับแต่งเซลล์จัดการให้ไม่มีเส้นขอบ */
+td:last-child {
+    border: none; /* ลบเส้นขอบออก */
+    display: flex; /* ใช้ Flexbox สำหรับจัดการปุ่ม */
+    gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+/* ปุ่มในตาราง */
+a {
+    text-decoration: none; /* ไม่ให้มีขีดเส้นใต้ */
+    padding: 8px 12px; /* ระยะห่างภายในปุ่ม */
+    border-radius: 5px; /* มุมโค้งของปุ่ม */
+    font-weight: bold; /* หนักตัวอักษร */
+    transition: background-color 0.3s ease; /* เพิ่มการเปลี่ยนแปลงสี */
+}
+
+/* ปุ่มแก้ไข */
+a.text-blue-500 {
+    background-color: #4f83cc; /* สีพื้นหลังปุ่มแก้ไข */
+    color: white; /* สีตัวอักษร */
+}
+
+/* ปุ่มลบ */
+a.text-red-500 {
+    background-color: #e57373; /* สีพื้นหลังปุ่มลบ */
+    color: white; /* สีตัวอักษร */
+}
+
+/* เปลี่ยนสีเมื่อชี้เมาส์บนปุ่ม */
+a.text-blue-500:hover {
+    background-color: #357ab7; /* สีเข้มเมื่อชี้เมาส์บนปุ่มแก้ไข */
+}
+
+a.text-red-500:hover {
+    background-color: #c62828; /* สีเข้มเมื่อชี้เมาส์บนปุ่มลบ */
+}
+
+/* สไตล์สำหรับป๊อปอัพ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* สีพื้นหลังของ overlay */
+    display: none; /* แสดงเมื่อเรียกใช้ */
+    z-index: 999; /* อยู่เหนือทุกอย่าง */
+}
+
+.confirmation-popup {
+    display: none; /* แสดงเมื่อเรียกใช้ */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; /* สีพื้นหลังของป๊อปอัพ */
+    border-radius: 10px; /* มุมโค้ง */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงาของป๊อปอัพ */
+    z-index: 1000;
+    padding: 20px; /* ระยะห่างภายใน */
+    text-align: center; /* จัดกลางข้อความ */
+    width: 300px; /* ความกว้างของป๊อปอัพ */
+}
+
+/* สไตล์สำหรับปุ่มในป๊อปอัพ */
+.bg-red-500 {
+    background-color: #e3342f; /* สีของปุ่มลบ */
+}
+
+.bg-gray-300 {
+    background-color: #d1d5db; /* สีของปุ่มยกเลิก */
+}
+
+/* ปรับสไตล์ให้กับการ์ด */
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05); /* ขยายการ์ดเมื่อชี้เมาส์ */
+}
+
+/* ปรับสไตล์ตาราง */
+.table th, .table td {
+    border: 1px solid #e2e8f0; /* เส้นกรอบ */
+    padding: 0.75rem; /* ระยะห่างภายใน */
+    border-radius: 5px; /* มุมโค้ง */
+}
+/* ปรับขนาดของรูปภาพให้เท่ากัน */
+td img {
+    width: 150px; /* ความกว้างที่ต้องการ (คุณสามารถปรับได้) */
+    height: 150px; /* ความสูงที่ต้องการ (คุณสามารถปรับได้) */
+    object-fit: cover; /* ครอบให้เต็มโดยไม่ยืดผิดรูป */
+    border-radius: 5px; /* เพิ่มมุมโค้งเล็กน้อยเพื่อความสวยงาม */
+}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการเมนู</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{% static 'css/menu_list.css' %}" rel="stylesheet"> <!-- เชื่อมโยง CSS -->
+</head>
+<body class="bg-blue-50 p-6 min-h-screen flex flex-col">
+
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-bold mb-8 text-center text-blue-700">รายการเมนู</h1>
+        
+        <!-- ปุ่มอยู่กลาง -->
+        <div class="flex justify-center mb-4 space-x-2"> 
+            <a href="{% url 'add_menu' %}" class="bg-blue-500 text-white rounded-md py-2 px-4">เพิ่มเมนู</a>
+            <a href="{% url 'home' %}" class="bg-gray-500 text-white rounded-md py-2 px-4">กลับไปหน้าโฮม</a>
+        </div>
+        
+        <table class="min-w-full border-collapse border border-gray-300">
+            <thead class="table-header">
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">รูปภาพ</th>
+                    <th class="border border-gray-300 px-4 py-2">ชื่อเมนู</th>
+                    <th class="border border-gray-300 px-4 py-2">รายละเอียด</th>
+                    <th class="border border-gray-300 px-4 py-2">ราคา (บาท)</th>
+                    <th class="border border-gray-300 px-4 py-2">ประเภท</th>
+                    <th class="border border-gray-300 px-4 py-2">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in menus %}
+                    <tr>
+                        <td class="border border-gray-300 px-4 py-2">
+                            {% if menu.image %}
+                                <img src="{{ menu.image.url }}" alt="{{ menu.name }}" width="100" class="rounded-lg"/>
+                            {% else %}
+                                <p class="text-gray-500">ไม่มีภาพ</p>
+                            {% endif %}
+                        </td>
+                        <td class="border border-gray-300 px-4 py-2">{{ menu.name }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ menu.description }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ menu.price }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ menu.category }}</td>
+                        <td class="border border-gray-300 px-4 py-2 flex space-x-2">
+                            <a href="{% url 'edit_menu' menu.id %}" class="text-blue-500">แก้ไข</a>
+                            <a href="#" class="text-red-500" onclick="confirmDelete('{{ menu.name }}', '{% url 'delete_menu' menu.id %}')">ลบ</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="overlay" id="overlay" style="display: none;"></div>
+    <div class="confirmation-popup" id="confirmationPopup" style="display: none;">
+        <p>คุณแน่ใจหรือไม่ว่าต้องการลบเมนูนี้?</p>
+        <p id="menuName"></p>
+        <button id="confirmDelete" class="bg-red-500 text-white rounded-md py-2 px-4">ยืนยัน</button>
+        <button id="cancelDelete" class="bg-gray-300 rounded-md py-2 px-4">ยกเลิก</button>
+    </div>
+
+    <script>
+        function confirmDelete(menuName, url) {
+            document.getElementById('menuName').innerText = menuName;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('confirmationPopup').style.display = 'block';
+
+            document.getElementById('confirmDelete').onclick = function() {
+                window.location.href = url;
+            };
+
+            document.getElementById('cancelDelete').onclick = function() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('confirmationPopup').style.display = 'none';
+            };
+        }
+    </script>
+</body>
+</html>

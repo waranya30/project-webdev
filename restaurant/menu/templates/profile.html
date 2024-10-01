@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ของ {{ user.username }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto py-12 text-center">
+        <h1 class="text-4xl font-bold mb-6">โปรไฟล์ของ {{ user.username }}</h1>
+        <p>ยินดีต้อนรับเข้าสู่โปรไฟล์ของคุณ</p>
+        <a href="{% url 'edit_profile' %}" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">แก้ไขโปรไฟล์</a>
+        <form method="POST" action="{% url 'logout' %}" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="mt-4 inline-block px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">ออกจากระบบ</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก</title>
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6 flex flex-col items-center">
+    <div class="signup-container">
+        <h1 class="signup-title">สมัครสมาชิก</h1>
+        <form method="POST" class="signup-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="signup-button">สมัครสมาชิก</button>
+        </form>
+        <p class="signup-login-link">มีบัญชีอยู่แล้ว? <a href="{% url 'login' %}" class="text-link">เข้าสู่ระบบที่นี่</a></p>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+/* ตั้งค่ารูปแบบปุ่มกลับ */
+.btn-back {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-back:hover {
+    background-color: #357ABD;
+}
+
+/* รูปแบบของ container */
+.content-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* ตั้งค่า chart */
+.chart-container {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+}
+
+/* ตั้งค่าตารางยอดขาย */
+.table-container {
+    overflow-x: auto;
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sales-table th, .sales-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+.sales-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.sales-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.sales-table tr:hover {
+    background-color: #e2e8f0;
+}
+
+/* การตั้งค่าพื้นหลังและฟอนต์ */
+body {
+    font-family: 'Prompt', sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}

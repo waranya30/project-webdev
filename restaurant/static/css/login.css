@@ -1,0 +1,86 @@
+/* login.css */
+
+/* การกำหนดพื้นหลังของ body และการจัดให้อยู่กลางหน้าจอ */
+body {
+    background-color: #f3f4f6; /* สีเทาอ่อนเพื่อพื้นหลัง */
+    font-family: 'Prompt', sans-serif; /* ใช้ฟอนต์ Prompt เพื่อให้ดูสวยงาม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* ให้ครอบคลุมความสูงของหน้าจอทั้งหมด */
+    margin: 0;
+}
+
+/* กล่องเข้าสู่ระบบ */
+.login-container {
+    background-color: #ffffff; /* สีพื้นหลังขาว */
+    border-radius: 12px; /* มุมโค้งที่พอเหมาะ */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงาเพื่อเพิ่มมิติ */
+    padding: 1.5rem; /* ระยะห่างภายในกล่อง */
+    max-width: 320px; /* ลดความกว้างลงเพื่อให้กระชับขึ้น */
+    width: 100%;
+    text-align: center; /* จัดทุกอย่างให้อยู่ตรงกลาง */
+}
+
+/* ชื่อหัวข้อ */
+.login-header {
+    font-size: 1.75rem; /* ขนาดใหญ่พอดี ไม่โดดเด่นเกินไป */
+    font-weight: bold;
+    color: #1d4ed8; /* สีฟ้าเข้มเพื่อความโดดเด่น */
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+}
+
+/* ปุ่มเข้าสู่ระบบ */
+.login-button {
+    background-color: #1d4ed8; /* สีพื้นหลังปุ่ม */
+    color: #ffffff; /* สีข้อความขาว */
+    padding: 0.5rem; /* ระยะห่างภายในปุ่มให้พอดี */
+    border-radius: 0.375rem; /* มุมโค้ง */
+    transition: background-color 0.3s ease; /* การเปลี่ยนสีพื้นหลังอย่างนุ่มนวล */
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    margin-top: 1rem;
+}
+
+.login-button:hover {
+    background-color: #2563eb; /* สีฟ้าเข้มขึ้นเมื่อชี้เมาส์ */
+}
+
+/* ข้อความแนะนำสำหรับการสมัครสมาชิก */
+.signup-text {
+    margin-top: 0.75rem;
+    color: #666666;
+    text-align: center;
+}
+
+/* ลิงก์สมัครสมาชิก */
+.signup-link {
+    color: #1d4ed8; /* สีฟ้าสำหรับลิงก์ */
+    text-decoration: none; /* ไม่ต้องการขีดเส้นใต้ */
+    transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+    color: #2563eb; /* สีเข้มขึ้นเมื่อชี้เมาส์ */
+}
+
+/* การจัดการฟอร์มและช่องกรอก */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border: 1px solid #e5e7eb; /* ขอบสีเทาอ่อน */
+    border-radius: 0.375rem; /* มุมโค้ง */
+    padding: 0.5rem; /* ระยะห่างภายในช่องกรอกให้กะทัดรัด */
+    margin-bottom: 1rem; /* ระยะห่างระหว่างฟิลด์ */
+    font-size: 0.9rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1d4ed8; /* สีขอบเมื่อโฟกัส */
+    box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.1); /* เงารอบขอบเมื่อโฟกัส */
+}

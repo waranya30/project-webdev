@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4ff; /* สีพื้นหลังที่สวยงาม */
+}
+
+.form-background {
+    background-color: rgba(136, 203, 231, 0.9); /* สีพื้นหลังของฟอร์ม */
+    padding: 20px; /* เพิ่ม padding เพื่อให้ฟอร์มไม่ชิดขอบ */
+    border-radius: 10px; /* มุมโค้งของฟอร์ม */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงาของฟอร์ม */
+}
+
+h2 {
+    text-align: left; /* จัดให้ชิดซ้าย */
+    margin-bottom: 20px;
+    color: #4A90E2; /* เปลี่ยนสีให้สวย */
+}
+
+h1 {
+    text-align: center; /* จัดกลาง */
+}
+
+/* ปรับขนาดฟอร์ม */
+form {
+    padding: 15px; /* ลดขนาด padding ของฟอร์ม */
+    border-radius: 10px; /* มุมโค้ง */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* เงาของฟอร์ม */
+}
+
+/* ปรับขนาดฟิลด์กรอกข้อมูล */
+input[type="text"], input[type="number"], textarea {
+    border: 1px solid #ddd; /* ขอบเรียบ */
+    border-radius: 5px; /* มุมโค้ง */
+    padding: 8px; /* ลดระยะห่างภายใน */
+    font-size: 14px; /* ขนาดตัวอักษร */
+}
+
+/* ปรับขนาดฟิลด์กรอกข้อมูลสำหรับไฟล์ */
+input[type="file"] {
+    border: 1px solid #ddd; /* ขอบเรียบ */
+    border-radius: 5px; /* มุมโค้ง */
+    padding: 8px; /* ลดระยะห่างภายใน */
+}
+
+/* ป้ายชื่อ */
+label {
+    font-weight: bold; /* เน้นข้อความในป้าย */
+    font-size: 14px; /* ขนาดตัวอักษร */
+}
+
+/* ปรับสไตล์ปุ่ม */
+button {
+    background-color: #4A90E2; /* สีปุ่ม */
+    color: white; /* สีตัวอักษร */
+    border-radius: 5px; /* มุมโค้ง */
+    padding: 10px 15px; /* ขนาดของปุ่ม */
+    border: none; /* ไม่มีขอบ */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นมือ */
+    font-size: 16px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+}
+
+button:hover {
+    background-color: #357ABD; /* สีเมื่อชี้ที่ปุ่ม */
+}
+
+/* ปุ่มกลับไปหน้าโฮม */
+a {
+    background-color: #d1d5db; /* สีพื้นหลัง */
+    color: white; /* สีตัวอักษร */
+    padding: 10px 15px; /* ขนาดของปุ่ม */
+    border-radius: 5px; /* มุมโค้ง */
+    font-size: 16px; /* ขนาดตัวอักษร */
+}
+
+a:hover {
+    background-color: #a1a1a1; /* สีเข้มเมื่อชี้เมาส์ */
+}
+
+/* ปรับระยะห่าง */
+.mb-4 {
+    margin-bottom: 1rem; /* ปรับระยะห่างให้มากขึ้น */
+}

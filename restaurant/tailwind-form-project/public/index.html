@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฟอร์มรับข้อมูลเมนู</title>
+    <link href="/css/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">ฟอร์มรับข้อมูลเมนูอาหาร</h1>
+        <form action="#" method="POST" class="space-y-4">
+
+            <!-- TextField สำหรับชื่อเมนู -->
+            <div>
+                <label for="menu-name" class="block text-sm font-medium text-gray-700">ชื่อเมนู</label>
+                <input type="text" id="menu-name" name="menu-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-300">
+            </div>
+
+            <!-- TextField สำหรับราคา -->
+            <div>
+                <label for="menu-price" class="block text-sm font-medium text-gray-700">ราคา (บาท)</label>
+                <input type="number" id="menu-price" name="menu-price" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-300">
+            </div>
+
+            <!-- RadioButton สำหรับประเภทอาหาร -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">ประเภทอาหาร</label>
+                <div class="mt-2 space-y-2">
+                    <div class="flex items-center">
+                        <input id="type1" name="food-type" type="radio" value="main-course" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="type1" class="ml-3 text-sm font-medium text-gray-700">อาหารจานหลัก</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="type2" name="food-type" type="radio" value="dessert" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="type2" class="ml-3 text-sm font-medium text-gray-700">ของหวาน</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TextArea สำหรับรายละเอียดเมนู -->
+            <div>
+                <label for="menu-description" class="block text-sm font-medium text-gray-700">รายละเอียดเมนู</label>
+                <textarea id="menu-description" name="menu-description" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-300"></textarea>
+            </div>
+
+            <!-- DropdownList สำหรับเลือกจำนวนอาหารในการสั่งซื้อ -->
+            <div>
+                <label for="menu-quantity" class="block text-sm font-medium text-gray-700">จำนวนในการสั่งซื้อ</label>
+                <select id="menu-quantity" name="menu-quantity" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-300">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <!-- FileBrowse สำหรับอัปโหลดภาพเมนูอาหาร -->
+            <div>
+                <label for="menu-image" class="block text-sm font-medium text-gray-700">อัปโหลดภาพเมนู</label>
+                <input type="file" id="menu-image" name="menu-image" class="mt-1 block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-300">
+            </div>
+
+            <!-- ปุ่มส่งฟอร์ม -->
+            <div class="text-center">
+                <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white rounded-md shadow-lg hover:bg-indigo-700 focus:ring focus:ring-indigo-300">บันทึกเมนู</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

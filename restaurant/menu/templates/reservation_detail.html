@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดการจองโต๊ะ</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto py-12">
+        <h1 class="text-3xl font-bold mb-6 text-center">รายละเอียดการจองโต๊ะ</h1>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-lg mb-2"><strong>โต๊ะ:</strong> {{ reservation.table_number }}</p>
+            <p class="text-lg mb-2"><strong>ชื่อผู้จอง:</strong> {{ reservation.customer_name }}</p>
+            <p class="text-lg mb-2"><strong>เบอร์โทรศัพท์:</strong> {{ reservation.phone_number }}</p>
+            <p class="text-lg mb-2"><strong>วันที่จอง:</strong> {{ reservation.reservation_date }}</p>
+            <p class="text-lg mb-2"><strong>เวลาที่จอง:</strong> {{ reservation.reservation_time }}</p>
+            <p class="text-lg mb-2"><strong>จำนวนคน:</strong> {{ reservation.number_of_people }}</p>
+        </div>
+
+        <div class="mt-6 text-center">
+            <a href="{% url 'order_and_reserve' %}" class="bg-blue-500 text-white px-4 py-2 rounded">กลับไปที่หน้าสั่งอาหารและจองโต๊ะ</a>
+        </div>
+    </div>
+
+</body>
+</html>

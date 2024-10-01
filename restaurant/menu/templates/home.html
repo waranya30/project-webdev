@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแรก</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/home.css' %}" rel="stylesheet"> <!-- เชื่อมโยง CSS แบบกำหนดเองสุดท้าย -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- แถบนำทาง (Navbar) -->
+    <nav class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">
+                <a href="{% url 'home' %}" class="hover:text-blue-300 transition">
+                    ระบบจัดการเมนูอาหาร
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">  
+                <a href="{% url 'home' %}" class="px-3 py-2 rounded hover:bg-blue-500 transition">หน้าแรก</a>
+                <a href="{% url 'menu_list' %}" class="px-3 py-2 rounded hover:bg-blue-500 transition">แก้ไขเมนู</a>
+                <a href="{% url 'add_menu' %}" class="px-3 py-2 rounded hover:bg-blue-500 transition">เพิ่มเมนูใหม่</a>
+                <a href="{% url 'my_sales' %}" class="px-3 py-2 rounded hover:bg-blue-500 transition">ยอดขายของฉัน</a>
+
+                {% if user.is_authenticated %}
+                    <div class="flex items-center">
+                        <a href="{% url 'profile' %}" class="flex flex-col items-center hover:text-blue-300 transition">  
+                            <span class="flex items-center"> 
+                                <i class="fas fa-user fa-sm"></i>
+                                <span class="ml-1 text-base">{{ user.username }}</span>
+                            </span>
+                        </a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="px-3 py-2 rounded hover:bg-blue-500 transition">เข้าสู่ระบบ</a>
+                    <a href="{% url 'signup' %}" class="px-3 py-2 rounded hover:bg-blue-500 transition">สมัครสมาชิก</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- เนื้อหาหลัก -->
+    <div class="container mx-auto py-12">
+        {% if user.is_authenticated %}
+            <h2 class="text-3xl font-bold mb-6 text-center">เมนูทั้งหมด</h2>
+
+            <!-- ปุ่มกรองประเภท -->
+            <div class="flex justify-center space-x-4 mb-6">
+                <button id="ทั้งหมด" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition">ทั้งหมด</button>
+                <button id="อาหารคาว" class="px-4 py-2 text-white rounded transition" style="background-color: #FFA500;">ของคาว</button>
+                <button id="ของหวาน" class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-400 transition">ของหวาน</button>
+                <button id="เครื่องดื่ม" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-500 transition">เครื่องดื่ม</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-3" id="menu-grid">
+                {% for menu in menus %}
+                    <div class="card bg-white rounded-lg shadow-md p-4 menu-item" data-category="{{ menu.category }}">
+                        {% if menu.image %}
+    <img src="{{ menu.image.url }}" alt="{{ menu.name }}" class="w-full h-32 object-cover rounded-t-lg mb-3">
+{% else %}
+    <div class="w-full h-32 bg-gray-300 rounded-t-lg mb-3 flex items-center justify-center">
+        <p class="text-gray-500">ไม่มีภาพ</p>
+    </div>
+{% endif %}
+                        <h2 class="text-xl font-semibold">{{ menu.name }}</h2>
+                        <p class="text-gray-700">{{ menu.description }}</p>
+                        <p class="text-gray-500">{{ menu.category }}</p>
+                        <p class="text-red-800 font-bold mt-2">{{ menu.price }} บาท</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h1 class="text-4xl font-bold mb-6 text-center">กรุณาเข้าสู่ระบบ</h1>
+            <p class="text-xl mb-6 text-center">กรุณาเข้าสู่ระบบเพื่อเข้าถึงระบบ</p>
+        {% endif %}
+    </div>
+
+    <!-- การโหลด -->
+    <div class="loading hidden" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <script>
+        // แสดงการโหลด
+        document.getElementById('loading').classList.remove('hidden');
+        // ซ่อนการโหลดหลังจากโหลดเสร็จ
+        window.onload = function() {
+            document.getElementById('loading').classList.add('hidden');
+        };
+
+       // ฟังก์ชันกรองเมนู
+        const buttons = document.querySelectorAll('.flex button'); // เลือกปุ่มทั้งหมด
+        const menuItems = document.querySelectorAll('.menu-item'); // เลือกเมนูทั้งหมด
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.id; // รับ id ของปุ่มที่กด
+                menuItems.forEach(item => {
+                    if (category === 'ทั้งหมด') {
+                        item.style.display = 'block'; // แสดงทั้งหมด
+                    } else {
+                        // ตรวจสอบประเภทของเมนู
+                        if (item.getAttribute('data-category') === category) {
+                            item.style.display = 'block'; // แสดงประเภทที่เลือก
+                        } else {
+                            item.style.display = 'none'; // ซ่อนประเภทอื่น
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

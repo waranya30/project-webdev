@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยอดขายของคุณ</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{% static 'css/my_sales.css' %}" rel="stylesheet"> <!-- เชื่อมโยง CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gray-100 p-6 flex flex-col items-center">
+    <a href="{% url 'home' %}" class="btn-back mb-4">กลับไปหน้าโฮม</a>
+
+    <div class="content-container">
+        <h1 class="text-3xl font-bold mb-4 text-center">กราฟยอดขายเดือน {{ month }} ของคุณ ({{ year }})</h1>
+        <div class="chart-container shadow-lg rounded-md">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-center">ยอดขายของคุณ</h2>
+        <div class="table-container">
+            <table class="sales-table">
+                <thead>
+                    <tr>
+                        <th>ชื่อเมนู</th>
+                        <th>ยอดขายรวม (บาท)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales_data %}
+                    <tr>
+                        <td>{{ sale.menu.name }}</td>
+                        <td>{{ sale.total_sales }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // การแสดงผลกราฟยอดขายของเดือนปัจจุบันโดยใช้ Chart.js
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var monthlySalesData = {{ monthly_sales_data|safe }};
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: monthlySalesData.labels,
+                datasets: [{
+                    label: 'ยอดขายรวม (บาท)',
+                    data: monthlySalesData.data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขเมนู: {{ menu.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-blue-50 p-6 min-h-screen flex flex-col justify-center items-center">
+
+    <h1 class="text-4xl font-bold mb-8 text-center text-blue-700">แก้ไขเมนู: {{ menu.name }}</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-xl shadow-xl max-w-sm w-full space-y-4 mt-4">
+        {% csrf_token %}
+        
+        <div>
+            <label for="name" class="block font-semibold">ชื่อเมนู</label>
+            <input type="text" name="name" id="name" value="{{ menu.name }}" class="border rounded-md w-full p-2" required/>
+        </div>
+        
+        <div>
+            <label for="description" class="block font-semibold">รายละเอียด</label>
+            <textarea name="description" id="description" class="border rounded-md w-full p-2" required>{{ menu.description }}</textarea>
+        </div>
+        
+        <div>
+            <label for="price" class="block font-semibold">ราคา</label>
+            <input type="number" step="0.01" name="price" id="price" value="{{ menu.price }}" class="border rounded-md w-full p-2" required/>
+        </div>
+        
+        <div>
+            <span class="block font-semibold">ประเภท</span>
+            <label>
+                <input type="radio" name="category" value="อาหารคาว" {% if menu.category == 'อาหารคาว' %}checked{% endif %}> อาหารคาว
+            </label>
+            <label>
+                <input type="radio" name="category" value="ของหวาน" {% if menu.category == 'ของหวาน' %}checked{% endif %}> ของหวาน
+            </label>
+            <label>
+                <input type="radio" name="category" value="เครื่องดื่ม" {% if menu.category == 'เครื่องดื่ม' %}checked{% endif %}> เครื่องดื่ม
+            </label>
+        </div>
+        
+        <div>
+            <label for="image" class="block font-semibold">อัปโหลดภาพใหม่ (ถ้ามี)</label>
+            <input type="file" name="image" id="image" class="border rounded-md w-full"/>
+        </div>
+        
+        <button type="submit" class="bg-blue-500 text-white rounded-md py-2 px-4">บันทึก</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="{% url 'menu_list' %}" class="text-blue-500 hover:underline">กลับไปยังรายการเมนู</a>
+    </div>
+
+    {% if messages %}
+        <div class="mt-4">
+            {% for message in messages %}
+                <div class="text-red-500">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6 flex flex-col items-center">
+    <div class="login-container bg-white rounded-lg shadow-md p-6 w-full max-w-xs">
+        <h1 class="login-header text-2xl font-bold mb-4 text-center">เข้าสู่ระบบ</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="login-button w-full bg-blue-600 text-white rounded py-2 mt-4 hover:bg-blue-500 transition">เข้าสู่ระบบ</button>
+        </form>
+        <p class="mt-4 text-center text-gray-700">ยังไม่มีบัญชี? <a href="{% url 'signup' %}" class="signup-link text-blue-600 hover:underline">สมัครสมาชิกที่นี่</a></p>
+
+    </div>
+</body>
+</html>
